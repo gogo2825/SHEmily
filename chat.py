@@ -23,18 +23,18 @@ class ChatBot:
         ckpt = tf.train.get_checkpoint_state(train_dir)
         self.model.saver.restore(self.sess, ckpt.model_checkpoint_path)
 
-    def run(self, data):
-        #sys.stdout.write("> ")
-        #sys.stdout.flush()
-        #line = sys.stdin.readline()
- 	test = data  
-        message = self.get_replay(test)
-	print message
-	return message['content']
-        #    sys.stdout.write("\n> ")
-        #    sys.stdout.flush()
+    def run(self):
+        sys.stdout.write("> ")
+        sys.stdout.flush()
+        line = sys.stdin.readline()
+	
+	while line:
+	    print(self.get_replay(line.strip()))
 
-        #    line = sys.stdin.readline()
+            sys.stdout.write("\n> ")
+            sys.stdout.flush()
+
+            line = sys.stdin.readline()
 
     def decode(self, enc_input, dec_input):
         if type(dec_input) is np.ndarray:
